@@ -1,0 +1,79 @@
+@import "../../quiz.component.scss";
+#bar {
+    background: linear-gradient(145deg,$quiz-bar-color1,$quiz-bar-color2);
+    border-radius: 1rem;
+    width: 100%;
+    height: $quiz-bar-size;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
+    grid-template-rows: 1;
+    align-items: center;
+}
+#bar.dark-mode {
+    background: linear-gradient(145deg,$quiz-bar-color1-dark,$quiz-bar-color2-dark);
+}
+
+#bar .name, #bar .score, #bar ul {
+    display: inline-block;
+    color: white;
+    margin: 0 calc(#{$quiz-bar-size}/2);
+    text-transform: uppercase;
+}
+
+#bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#bar ul li {
+    display: inline-block;
+    margin: 0 2%;
+}
+
+
+.reset-btn{
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+.reset-btn:hover{
+    border-radius: 10px;
+    background-color: rgba(167, 199, 241, 0.212);
+}
+
+.name {
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-right: 5%;
+    cursor: default;
+    user-select: none;
+}
+
+#bar .score {
+    font-size: 1.5rem;
+    text-align: center;
+    cursor: default;
+    user-select: none;
+}
+
+#bar .darkmode-toggle-btn{
+    text-align: right;
+    margin: 0 5%;
+}
+
+.svg {
+    color: white;
+    scale: 2;
+}
+
+.svg:hover {
+    scale: 2.2;
+    cursor: pointer;
+}
+
+

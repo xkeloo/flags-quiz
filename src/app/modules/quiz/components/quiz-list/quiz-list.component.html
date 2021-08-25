@@ -1,0 +1,5 @@
+<div class="test-grid" [ngClass]="{'dark-mode': darkMode}">
+    <div *ngFor="let countryId of countryIds; let i = index">
+        <app-quiz-item #testItem [id]="i" [darkMode]="darkMode" [country]="getCountryById(countryId)" (completedEvent)="updateScore(i)" (click)="onItemClick($event)"></app-quiz-item>
+    </div>
+</div>

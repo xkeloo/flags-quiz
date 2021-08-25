@@ -1,0 +1,22 @@
+@import "../../quiz.component.scss";
+
+.test-grid {
+    max-width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    display: grid;
+    grid-gap: 1rem ;
+    grid-template-columns: repeat(auto-fill, minmax($quiz-item-size, 1fr));
+    grid-auto-flow: row;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+    background-color: $quiz-list-background-color;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.dark-mode {
+    background-color: $quiz-list-background-color-dark;
+}

@@ -1,0 +1,26 @@
+div {
+    overflow: hidden;
+}
+svg {
+    max-width: auto;
+    max-height: 80vh;
+    overflow: hidden;
+}
+.select-path:hover {
+    cursor: pointer;
+    fill-opacity: 0.4;
+    fill: black;
+}
+
+path {
+    fill-opacity: 0.01;
+}
+
+.bad-answer {
+    fill-opacity: 0.5;
+    fill: red;
+    transition: fill 500ms ease;
+}
+.bad-answer:hover {
+    fill: red;
+}
