@@ -78,4 +78,14 @@ export class QuizItemComponent implements OnInit {
       });
     }
   }
+
+  reset(): void {
+    this.capitalAnswered = false;
+    this.nameAnswered = false;
+    this.mapAnswered = false;
+    this.capitalInput.nativeElement.disabled = false;
+    this.capitalInput.nativeElement.value = "";
+    this.nameInput.nativeElement.disabled = false;
+    this.nameInput.nativeElement.value = "";
+  }
 }

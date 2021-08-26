@@ -59,9 +59,7 @@ export class QuizListComponent implements OnInit {
 
   reset(): void {
     this.testItems.forEach(item => {
-      item.mapAnswered = false;
-      item.nameAnswered = false;
-      item.capitalAnswered = false;
+      item.reset();
     });
 
     this.score = 0;
