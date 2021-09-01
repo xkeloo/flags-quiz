@@ -68,7 +68,9 @@ export class QuizItemComponent implements OnInit {
 
   openDialog(): void {
     if(!this.mapAnswered) {
-      const dialogRef = this.dialog.open(QuizMapComponent, { data: this.country.isoCode });
+      const dialogRef = this.dialog.open(QuizMapComponent, { 
+        data: this.country.isoCode
+      });
 
       dialogRef.afterClosed().subscribe(result => {
         if(result == "good-answer") {

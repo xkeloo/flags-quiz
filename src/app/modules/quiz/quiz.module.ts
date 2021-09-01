@@ -27,6 +27,9 @@ import { QuizBarComponent } from './components/quiz-bar/quiz-bar.component';
     MatInputModule,
     MatDialogModule,
   ],
+  entryComponents: [
+    QuizMapComponent
+  ],
   exports: [QuizComponent]
 })
 export class QuizModule { }
