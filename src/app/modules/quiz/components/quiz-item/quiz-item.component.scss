@@ -68,13 +68,17 @@ input:disabled {
     margin: auto;
     text-align: center;
     cursor: pointer;
-    background-color: hsl(224, 68%, 52%);
+    background-color: $quiz-globe-button-color;
     color: #fff;
     border-radius: 0.25rem;
-    transition:  background-color .15s ease-in-out;
+}
+
+.button-globe.dark-mode {
+    background-color: $quiz-globe-button-color-dark;
 }
 
 .button-globe:hover {
+    transition:  background-color .15s ease-in-out;
     background-color: hsl(224, 68%, 32%);
 }
 

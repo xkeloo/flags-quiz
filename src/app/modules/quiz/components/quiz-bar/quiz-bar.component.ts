@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
 
 @Component({
   selector: 'app-quiz-bar',
@@ -11,7 +13,7 @@ export class QuizBarComponent implements OnInit {
   @Output() resetEvent = new EventEmitter();
   @Output() darkModeEvent = new EventEmitter();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +24,11 @@ export class QuizBarComponent implements OnInit {
 
   toggleDarkMode(): void {
     this.darkModeEvent.emit();
+  }
+
+  openDialog(): void {
+      const dialogRef = this.dialog.open(HelpDialogComponent, { data: this.darkMode });
+
+      dialogRef.afterClosed().subscribe();
   }
 }

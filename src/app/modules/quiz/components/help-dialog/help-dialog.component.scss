@@ -1,0 +1,105 @@
+.slideshow-container{
+    width: 40vw;
+    height: 60vh;
+    border-radius: 25px;
+    padding: 25px;
+    background-color: #dbe0eb;
+    color: hsl(248, 7%, 21%);
+}
+.slideshow-container.dark-mode {
+    background-color: #2b303b;
+    color: hsl(240, 2%, 78%);
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    transition: 0.6s ease;
+    user-select: none;
+}
+
+.prev {
+    left: 30vw;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 30vw;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot:hover {
+    background-color: #717171;
+}
+
+@mixin slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+
+    .text-tip {
+        font-weight: 600;
+    }
+}
+
+.slide1 {
+    @include slide;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.slide2 {
+    @include slide;
+
+    img {
+        max-width: 100%;
+        max-height: 70%;
+        height: auto;
+        box-shadow: 0 0 0.5rem hsl(192, 3%, 34%);
+    }
+
+    .text-tip {
+        text-align: center;
+    }
+}
+
+.slide3 {
+    @include slide;
+
+    img {
+        max-width: 70%;
+        max-height: 70%;
+        box-shadow: 0 0 0.5rem hsl(192, 3%, 34%);
+    }
+
+    .text-tip {
+        text-align: center;
+    }
+}

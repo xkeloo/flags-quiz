@@ -29,14 +29,14 @@ export class QuizMapComponent implements AfterViewInit {
   }
 
   check(event: Event): void {
-    if(!this.dragActive) {
-      let element: Element = event.target as Element;
+    if(this.dragActive) return;
+
+    let element: Element = event.target as Element;
       
-      if (element.id == this.data)
-        this.dialogRef.close("good-answer")
-      else {  
-        element.classList.add("bad-answer");
-      }
+    if (element.id == this.data)
+      this.dialogRef.close("good-answer")
+    else {  
+      element.classList.add("bad-answer");
     }
   }
 

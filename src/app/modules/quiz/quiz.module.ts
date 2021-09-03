@@ -10,6 +10,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { QuizMapComponent } from './components/quiz-map/quiz-map.component';
 import { QuizComponent } from './quiz.component';
 import { QuizBarComponent } from './components/quiz-bar/quiz-bar.component';
+import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 
 
 
@@ -19,7 +20,8 @@ import { QuizBarComponent } from './components/quiz-bar/quiz-bar.component';
     QuizListComponent,
     QuizMapComponent,
     QuizComponent,
-    QuizBarComponent
+    QuizBarComponent,
+    HelpDialogComponent
   ],
   imports: [
     CommonModule,
