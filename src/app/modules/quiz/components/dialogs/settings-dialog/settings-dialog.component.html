@@ -1,0 +1,22 @@
+<div id="settings">
+    <div class="settings-row">
+        <span class="description">Attempts per task:</span>
+        <div class="input-holder">
+            <input #attemptsInput (input)="attemptsSliderMoved(attemptsInput.value)" type="range" min="1" max="10" value={{attemptsAvaiable}} class="slider" autofocus=false>
+            <div class="labels">
+                <span class="center">1</span><output class="center">{{attemptsAvaiable}}</output><span class="center">10</span>
+            </div>
+        </div>
+    </div>
+    <div class="settings-row">
+        <span class="description">Time:</span>
+        <div class="input-holder">        
+            <input #minutesInput (input)="minutesSliderMoved(minutesInput.value)" type="range" min="1" max="30" value={{timerSetting}} class="slider">
+            <div class="labels">
+                <span class="center">1min</span><output class="center">{{timerSetting}}min</output><span class="center">30min</span>
+            </div>
+        </div>
+    </div>
+    <div class="btn" (click)="onClose(true)">START</div>
+    <div *ngIf="data.first" style="font-size: 0.6rem; margin-top: 0.5rem">Pressing 'esc' or clicking outside of the dialog box - no time and attempts limit.</div>
+</div>

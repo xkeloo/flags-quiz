@@ -17,7 +17,6 @@
 #bar .name, #bar .score, #bar ul {
     display: inline-block;
     color: white;
-    margin: 0 calc(#{$quiz-bar-size}/2);
     text-transform: uppercase;
 }
 
@@ -28,19 +27,53 @@
     text-align: left;
 }
 
-#bar ul li {
-    display: inline-block;
-    margin: 0 2%;
+#bar {
+    ul {
+        li {
+            display: inline-block;
+            margin: 0 3%;
+            position: relative;
+            font-size: 1.5rem;
+            text-align: center;
+            cursor: default;
+            user-select: none;
+        
+            #settings {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                top: 0px;
+                left: 0px;
+                transform: translate3d(-85%, 20%, 0px);
+                will-change: transform;
+                width: 12rem;
+                float: left;
+                min-width: 10rem;
+                padding: 1rem;
+                margin: .125rem 0 0;
+                font-size: 0.8rem;
+                text-transform: none;
+                color: #b6c3cf;
+                text-align: left;
+                list-style: none;
+                background-color: hsl(211, 49%, 23%);
+                background-clip: padding-box;
+                border: 1px solid rgba(0,0,0,.15);
+                border-radius: .25rem;
+                z-index: 1000;
+            }
+        }
+    }
 }
 
 
-.reset-btn{
+.bar-btn{
     font-size: 1.5rem;
     padding: 0.5rem;
     cursor: pointer;
     user-select: none;
 }
-.reset-btn:hover{
+.bar-btn:hover{
     border-radius: 10px;
     background-color: rgba(167, 199, 241, 0.212);
 }
@@ -61,14 +94,10 @@
     user-select: none;
 }
 
-#bar .darkmode-toggle-btn{
-    text-align: right;
-    margin: 0 5%;
-}
-
 svg {
     color: white;
     scale: 2;
+    text-align: center;
 }
 
 svg:hover {

@@ -11,7 +11,8 @@ import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 })
 export class QuizListComponent implements OnInit {
   @Input() darkMode: boolean;
-  @ViewChildren("testItem") testItems: QueryList<QuizItemComponent>;
+  @Input() numberOfTries: number;
+  @ViewChildren("quizItem") quizItems: QueryList<QuizItemComponent>;
   @Output() scoreEvent = new EventEmitter<string>();
   @Output() finishEvent = new EventEmitter();
   countryIds: number[] = [];
@@ -36,18 +37,21 @@ export class QuizListComponent implements OnInit {
     element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 
-  updateScore(index: number): void {
+  updateScore(): void {
     this.score++;
-    this.scoreEvent.emit(this.score + "/" + this.countryIds.length);
-    if(this.testItems.find(item => item.isCompleted() == false) == null)
+    this.scoreEvent.emit(this.score + "/" + 3*this.countryIds.length);
+  }
+
+  focusNextItem(index: number): void {
+    if(this.quizItems.find(item => item.isCompleted() == false) == null)
         this.finishTest();
-    else if(this.testItems.find(item => (item.id > index) && !item.isCompleted())){
-      let testItem = this.testItems.find(item => (item.id > index) && !item.isCompleted());
+    else if(this.quizItems.find(item => (item.id > index) && !item.isCompleted())){
+      let testItem = this.quizItems.find(item => (item.id > index) && !item.isCompleted());
       testItem?.nameInput.nativeElement.focus();
       testItem?.toView();
     }
     else {
-      let testItem = this.testItems.find(item => !item.isCompleted());
+      let testItem = this.quizItems.find(item => !item.isCompleted());
       testItem?.nameInput.nativeElement.focus();
       testItem?.toView();
     }
@@ -58,7 +62,7 @@ export class QuizListComponent implements OnInit {
   }
 
   reset(): void {
-    this.testItems.forEach(item => {
+    this.quizItems.forEach(item => {
       item.reset();
     });
 

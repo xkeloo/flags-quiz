@@ -7,10 +7,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { QuizItemComponent } from './components/quiz-item/quiz-item.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
-import { QuizMapComponent } from './components/quiz-map/quiz-map.component';
+import { QuizMapComponent } from './components/dialogs/quiz-map/quiz-map.component';
 import { QuizComponent } from './quiz.component';
 import { QuizBarComponent } from './components/quiz-bar/quiz-bar.component';
-import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
+import { HelpDialogComponent } from './components/dialogs/help-dialog/help-dialog.component';
+import { QuizFinishedDialogComponent } from './components/dialogs/quiz-finished-dialog/quiz-finished-dialog.component';
+import { SettingsDialogComponent } from './components/dialogs/settings-dialog/settings-dialog.component';
 
 
 
@@ -21,7 +23,9 @@ import { HelpDialogComponent } from './components/help-dialog/help-dialog.compon
     QuizMapComponent,
     QuizComponent,
     QuizBarComponent,
-    HelpDialogComponent
+    HelpDialogComponent,
+    QuizFinishedDialogComponent,
+    SettingsDialogComponent
   ],
   imports: [
     CommonModule,

@@ -6,7 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
   templateUrl: './quiz-map.component.html',
   styleUrls: ['./quiz-map.component.scss']
 })
-export class QuizMapComponent implements AfterViewInit {
+export class QuizMapComponent implements OnInit ,AfterViewInit {
   svgImage: Element;
 
   viewBox: {x: number, y: number, w: number, h: number};
@@ -20,7 +20,18 @@ export class QuizMapComponent implements AfterViewInit {
 
   constructor(
     public dialogRef: MatDialogRef<QuizMapComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string) { }
+    @Inject(MAT_DIALOG_DATA) public data: {isoCode: string, attemptsLeft: number}) { }
+
+  ngOnInit(): void {
+    this.dialogRef.keydownEvents().subscribe(event => {
+      if (event.key === "Escape")
+        this.onClose();
+    })
+
+    this.dialogRef.backdropClick().subscribe(event => {
+      this.onClose();
+    })
+  }
 
   ngAfterViewInit(): void {
     this.svgImage = document.getElementById("svg-map")!;
@@ -33,11 +44,19 @@ export class QuizMapComponent implements AfterViewInit {
 
     let element: Element = event.target as Element;
       
-    if (element.id == this.data)
+    if (element.id == this.data.isoCode)
       this.dialogRef.close("good-answer")
-    else {  
-      element.classList.add("bad-answer");
+    else {
+      this.data.attemptsLeft--;
+      if (this.data.attemptsLeft > 0)
+        element.classList.add("bad-answer");
+      else
+        this.onClose();
     }
+  }
+
+  onClose(): void {
+    this.dialogRef.close(this.data.attemptsLeft);
   }
 
   onWheel(event: WheelEvent): void {

@@ -96,3 +96,12 @@ input:disabled {
 .map-answered:hover {
     background-color: $quiz-answer-color;
 }
+
+.map-incorrect {
+    background-color: $quiz-incorrect-color;
+    cursor: auto;
+}
+
+.map-incorrect:hover {
+    background-color: $quiz-incorrect-color;
+}

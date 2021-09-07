@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { QuizBarComponent } from './components/quiz-bar/quiz-bar.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CountryService } from './services/country.service';
 
@@ -9,6 +10,8 @@ import { CountryService } from './services/country.service';
 })
 export class QuizComponent implements OnInit, AfterViewInit {
   @ViewChild("quizList") quizList: QuizListComponent;
+  @ViewChild("quizBar") quizBar: QuizBarComponent;
+  finished: boolean = false;
   darkMode: boolean = false;
   score: string = "0/0";
 
@@ -18,7 +21,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setAllCountriesList(); 
+    this.setAllCountriesList();
   }
 
   updateScore(score: string) {
@@ -28,13 +31,19 @@ export class QuizComponent implements OnInit, AfterViewInit {
   setAllCountriesList(): void {
     let list = this.countryService.getAllRandomizedIds();
     this.quizList.countryIds = list;
-    this.score = "0/" + list.length;
+    this.score = "0/" + 3*list.length;
   }
 
-  reset(): void {
+  restart(attemptsAvailable: number): void {
+    this.finished = false;
     this.setAllCountriesList();
+    this.quizList.quizItems.forEach(item => {
+      item.nameAttemptsLeft = attemptsAvailable;
+      item.capitalAttemptsLeft = attemptsAvailable;
+      item.mapAttemptsLeft = attemptsAvailable;
+    });
     this.quizList.reset();
-    this.quizList.testItems.first.toView();
+    this.quizList.quizItems.first.toView();
   }
 
   toggleDarkMode(): void {
@@ -42,7 +51,19 @@ export class QuizComponent implements OnInit, AfterViewInit {
     console.log("theme changed!" + this.darkMode)
   }
 
-  finishTest(): void {
+  quizFinished(): void {
+    if (this.finished) return;
+    this.finished = true;
+    this.quizList.quizItems.forEach(item => {
+      item.dialog.closeAll();
+      item.disable();
+    });
+  }
 
+  quizCompleted(): void {
+    if (this.finished) return;
+    this.finished = true;
+    this.quizBar.stopTimer();
+    this.quizBar.openQuizFinishedDialog();
   }
 }
