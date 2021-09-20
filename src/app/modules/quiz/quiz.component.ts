@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { QuizBarComponent } from './components/quiz-bar/quiz-bar.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
+import { ClientSettingsService } from './services/client-settings.service';
 import { CountryService } from './services/country.service';
 
 @Component({
@@ -12,16 +13,19 @@ export class QuizComponent implements OnInit, AfterViewInit {
   @ViewChild("quizList") quizList: QuizListComponent;
   @ViewChild("quizBar") quizBar: QuizBarComponent;
   finished: boolean = false;
-  darkMode: boolean = false;
   score: string = "0/0";
 
-  constructor(private countryService: CountryService) { }
+  constructor(private clientSettingsService: ClientSettingsService,private countryService: CountryService) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
     this.setAllCountriesList();
+  }
+
+  getDarkMode(): boolean {
+    return this.clientSettingsService.getDarkMode();
   }
 
   updateScore(score: string) {
@@ -44,11 +48,6 @@ export class QuizComponent implements OnInit, AfterViewInit {
     });
     this.quizList.reset();
     this.quizList.quizItems.first.toView();
-  }
-
-  toggleDarkMode(): void {
-    this.darkMode = !this.darkMode;
-    console.log("theme changed!" + this.darkMode)
   }
 
   quizFinished(): void {

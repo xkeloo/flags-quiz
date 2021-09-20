@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ClientSettingsService } from '../../services/client-settings.service';
 import { HelpDialogComponent } from '../dialogs/help-dialog/help-dialog.component';
 import { QuizFinishedDialogComponent } from '../dialogs/quiz-finished-dialog/quiz-finished-dialog.component';
 import { SettingsDialogComponent } from '../dialogs/settings-dialog/settings-dialog.component';
@@ -10,11 +11,9 @@ import { SettingsDialogComponent } from '../dialogs/settings-dialog/settings-dia
   styleUrls: ['./quiz-bar.component.scss']
 })
 export class QuizBarComponent implements OnInit {
-  @Input() darkMode: boolean;
   @Input() score: string;
   @Output() restartEvent = new EventEmitter<number>();
   @Output() quizFinishedEvent = new EventEmitter();
-  @Output() darkModeEvent = new EventEmitter();
   attemptsAvaiable: number = 3;
   timerSetting: number = 15;
   timerTimeLeft: number = this.timerSetting*60;
@@ -23,7 +22,7 @@ export class QuizBarComponent implements OnInit {
   interval: any;
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private clientSettingsService: ClientSettingsService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.openSettingsDialog(true);
@@ -36,7 +35,11 @@ export class QuizBarComponent implements OnInit {
   }
 
   toggleDarkMode(): void {
-    this.darkModeEvent.emit();
+    this.clientSettingsService.toggleDarkMode();
+  }
+
+  getDarkMode(): boolean {
+    return this.clientSettingsService.getDarkMode();
   }
 
   finishQuiz(): void {
@@ -76,14 +79,14 @@ export class QuizBarComponent implements OnInit {
 
   openQuizFinishedDialog(): void {
     let dialogRef
-    if (!this.darkMode)
+    if (!this.clientSettingsService.getDarkMode())
       dialogRef = this.dialog.open(QuizFinishedDialogComponent, { 
-        data: this.darkMode,
+        data: this.clientSettingsService.getDarkMode(),
         panelClass: 'panel-class'
       });
     else
       dialogRef = this.dialog.open(QuizFinishedDialogComponent, { 
-        data: this.darkMode,
+        data: this.clientSettingsService.getDarkMode(),
         panelClass: 'panel-class-dark'
       });
     
@@ -93,7 +96,7 @@ export class QuizBarComponent implements OnInit {
 
   openSettingsDialog(first: boolean): void {
     let dialogRef
-    if (!this.darkMode)
+    if (!this.clientSettingsService.getDarkMode())
       dialogRef = this.dialog.open(SettingsDialogComponent, { 
         data: {
           first: first,
@@ -124,14 +127,14 @@ export class QuizBarComponent implements OnInit {
 
   openHelpDialog(): void {
     let dialogRef
-    if (!this.darkMode)
+    if (!this.clientSettingsService.getDarkMode())
       dialogRef = this.dialog.open(HelpDialogComponent, { 
-        data: this.darkMode,
+        data: this.clientSettingsService.getDarkMode(),
         panelClass: 'panel-class'
       });
     else
       dialogRef = this.dialog.open(HelpDialogComponent, { 
-        data: this.darkMode,
+        data: this.clientSettingsService.getDarkMode(),
         panelClass: 'panel-class-dark'
       });
     

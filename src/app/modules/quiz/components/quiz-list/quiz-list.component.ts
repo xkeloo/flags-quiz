@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 
 import { Country } from '../../models/country.model';
+import { ClientSettingsService } from '../../services/client-settings.service';
 import { CountryService } from '../../services/country.service';
 import { QuizItemComponent } from '../quiz-item/quiz-item.component';
 
@@ -10,7 +11,6 @@ import { QuizItemComponent } from '../quiz-item/quiz-item.component';
   styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit {
-  @Input() darkMode: boolean;
   @Input() numberOfTries: number;
   @ViewChildren("quizItem") quizItems: QueryList<QuizItemComponent>;
   @Output() scoreEvent = new EventEmitter<string>();
@@ -18,9 +18,13 @@ export class QuizListComponent implements OnInit {
   countryIds: number[] = [];
   score: number = 0;
 
-  constructor(private countryService: CountryService) { }
+  constructor(private clientSettingsService: ClientSettingsService, private countryService: CountryService) { }
 
   ngOnInit(): void {
+  }
+
+  getDarkMode(): boolean {
+    return this.clientSettingsService.getDarkMode();
   }
 
   setCountriesIds(countryIds: number[]): void {

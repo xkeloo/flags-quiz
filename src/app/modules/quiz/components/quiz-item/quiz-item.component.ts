@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Country } from '../../models/country.model';
+import { ClientSettingsService } from '../../services/client-settings.service';
 import { QuizMapComponent } from '../dialogs/quiz-map/quiz-map.component';
 
 @Component({
@@ -9,7 +10,6 @@ import { QuizMapComponent } from '../dialogs/quiz-map/quiz-map.component';
   styleUrls: ['./quiz-item.component.scss']
 })
 export class QuizItemComponent implements OnInit {
-  @Input() darkMode: boolean;
   @Input() country: Country;
   @Input() id: number;
   @Output() scoreUpEvent = new EventEmitter();
@@ -30,9 +30,13 @@ export class QuizItemComponent implements OnInit {
   allAnswered: boolean = false;
 
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private clientSettingsService: ClientSettingsService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+  }
+
+  getDarkMode(): boolean {
+    return this.clientSettingsService.getDarkMode();
   }
 
   checkNameAnswer(nameAnswer: string) {
@@ -85,14 +89,14 @@ export class QuizItemComponent implements OnInit {
   setNameIncorrect(): void {
     this.nameInput.nativeElement.value = this.country.shortName;
     this.nameInput.nativeElement.disabled = true;
-    this.nameInput.nativeElement.style.color = "rgb(201, 52, 52)";
+    this.nameInput.nativeElement.style.color = "rgb(179, 27, 27)";
     this.nameIncorrect = true;
   }
 
   setCapitalIncorrect(): void {
     this.capitalInput.nativeElement.value = this.country.capital;
     this.capitalInput.nativeElement.disabled = true;
-    this.capitalInput.nativeElement.style.color = "rgb(201, 52, 52)";
+    this.capitalInput.nativeElement.style.color = "rgb(179, 27, 27)";
     this.capitalIncorrect = true;
   }
 

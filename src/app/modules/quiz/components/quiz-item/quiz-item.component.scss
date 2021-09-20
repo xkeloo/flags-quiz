@@ -10,10 +10,21 @@
     border-radius: 4%;
     box-shadow: 0 0 0.5rem hsl(192, 3%, 34%);
     scroll-snap-align: start end;
+
+    input:disabled {
+        color: $quiz-answer-color;
+    }
 }
 .test-item.dark-mode {
     background-color: $quiz-list-item-background-color-dark;
-    color: white;
+    color: hsl(0, 0%, 86%);
+
+    input:disabled {
+        color: $quiz-answer-color-dark;
+    }
+    .mat-focused mat-label {
+       color: hsl(231, 92%, 28%);
+    }
 }
 
 .image-holder {
@@ -43,10 +54,6 @@ mat-form-field {
     font-size: 0.8rem;
     font-weight: 800;
     text-align: center;
-}
-
-input:disabled {
-    color: $quiz-answer-color;
 }
 
 .country-name {

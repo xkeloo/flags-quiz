@@ -1,4 +1,4 @@
-<div class="quiz-holder" [ngClass]="{'dark-mode': darkMode}">
-    <app-quiz-bar #quizBar class="bar-holder" [darkMode]="darkMode" [score] = "score" (restartEvent)="restart($event)" (quizFinishedEvent)="quizFinished()" (darkModeEvent)="toggleDarkMode()"></app-quiz-bar>
-    <app-quiz-list #quizList class="list-holder" [ngClass]="{'dark-mode': darkMode}" [darkMode]="darkMode" [numberOfTries]="3" (scoreEvent)="updateScore($event)" (finishEvent)="quizCompleted()"></app-quiz-list>
+<div class="quiz-holder" [ngClass]="{'dark-mode': getDarkMode()}">
+    <app-quiz-bar #quizBar class="bar-holder" [score] = "score" (restartEvent)="restart($event)" (quizFinishedEvent)="quizFinished()"></app-quiz-bar>
+    <app-quiz-list #quizList class="list-holder" [ngClass]="{'dark-mode': getDarkMode()}" [numberOfTries]="3" (scoreEvent)="updateScore($event)" (finishEvent)="quizCompleted()"></app-quiz-list>
 </div>
