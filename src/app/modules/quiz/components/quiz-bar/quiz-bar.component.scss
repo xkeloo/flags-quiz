@@ -96,12 +96,12 @@
 
 svg {
     color: white;
-    scale: 2;
+    transform: scale(2);
     text-align: center;
 }
 
 svg:hover {
-    scale: 2.2;
+    transform: scale(2.2);
     cursor: pointer;
 }
 
